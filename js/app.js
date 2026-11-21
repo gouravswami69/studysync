@@ -46,7 +46,31 @@ function makeButton(label, action, id) {
 
 /* PAGE NAVIGATION */
 
-function showPage(pageName) {
+function showPage(pageName) {function showPage(pageName) {
+  document.querySelectorAll(".page").forEach(page => {
+    page.classList.add("hidden");
+  });
+
+  const selectedPage = document.getElementById(pageName);
+
+  if (selectedPage) {
+    selectedPage.classList.remove("hidden");
+  }
+
+  document.querySelectorAll(".nav-btn").forEach(button => {
+    button.classList.remove("active");
+  });
+
+  const activeButton = document.querySelector(
+    `[onclick="showPage('${pageName}')"]`
+  );
+
+  if (activeButton) {
+    activeButton.classList.add("active");
+  }
+}
+
+window.showPage = showPage;
   document.querySelectorAll(".page").forEach(page => {
     page.classList.add("hidden");
   });
